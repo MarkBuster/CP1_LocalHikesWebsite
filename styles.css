@@ -1,0 +1,18 @@
+/*
+  *** TODO: fill in your header ***
+  INSERT YOUR NAME HERE
+  INSERT THE CURRENT DATE HERE
+
+  WRITE A 2-3 SENTENCE FILE DESCRIPTION HERE
+*/
+
+/*
+  Note: This body rule set is to get you started
+*/
+body {
+  background-color: rgb(137, 182, 154);
+  font-family: "Helvetica", sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
