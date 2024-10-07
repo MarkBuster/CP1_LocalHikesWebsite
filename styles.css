@@ -1,4 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Creepster&family=Metal+Mania&family=Sixtyfour+Convergence&family=Space+Grotesk:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Creepster&family=Metal+Mania&family=Sixtyfour+Convergence&family=Nosifer&family=Space+Grotesk:wght@300..700&display=swap");
+
+@font-face {
+  font-family: 'Friday13SH';
+  src: url('Fonts/Friday13SH.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Friday13 Bonus NFI';
+  src: url('Fonts/Friday13 Bonus NFI.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Friday13v12';
+  src: url('Fonts/Friday13v12.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 * {
   box-sizing: border-box;
@@ -12,6 +34,7 @@ body {
   padding: 0;
 
 }
+
 body {
   background-image: url("Images/FoggyForest.jpg");
   background-size: cover; 
@@ -46,8 +69,9 @@ body {
 }
 
 .nav a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  color: rgba(249, 5, 5, 0.681);
 }
+
 .main-header {
   background-color: rgb(0, 0, 0, 0.4);
   background-image: url(images/headerBackground.jpg);
@@ -56,17 +80,40 @@ body {
   padding-bottom: 30px;
 }
 
-.band-name {
+.site-name {
   text-align: center;
   margin: 0;
-  font-size: 4em;
+  font-size: 8em;
   font-family: "Metal Mania";
   font-weight: normal;
   color: white;
 }
 
-.band-name-large {
-  font-size: 8em;
+.site-name a {
+  text-decoration: none;
+  font-family: "Metal Mania";
+  font-weight: normal;
+  color: inherit;
+}
+
+h1 a:hover{
+  text-shadow: 2px 2px 10px rgba(239, 231, 231, 0.8);
+}
+
+h3 {
+  position:sticky;
+  font-family: Nosifer;
+  font-size: 2em;
+  color: #f00;
+}
+
+h3 span {
+  font-family: Nosifer;
+  font-size: 1.01em;
+  height: 64%;
+  position: absolute;
+  color: rgb(143, 142, 142);
+  overflow: hidden; 
 }
 
 .content-section {
@@ -87,7 +134,7 @@ body {
   font-size: 2.5em;
 }
 
-.about-band-image {
+.about-site-image {
   float: left;
   height: 200px;
   margin: 15px;
@@ -115,5 +162,89 @@ footer {
 footer ul img {
   width: 30px;
   height: 30px;
+}
+
+.collage-container{
+  height: 400px;
+  margin-top: 50px;
+}
+
+.collage {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.collage a {
+  position: absolute;
+  display: block;
+}
+
+.collage a:hover .overlay{
+opacity: 1;
+}
+
+.collage img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid white;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.collage a:nth-child(1) {
+  top: 0;
+  left: 0;
+  width: 30%; 
+  min-width: 150px;
+  transform: rotate(-30deg);
+  z-index: 1;
+}
+
+.collage a:nth-child(2) {
   
+  left: 35%; /* Shifted left */
+  width: 30%;
+  min-width: 150px;
+  transform: rotate(-15deg);
+}
+
+.collage a:nth-child(3) {
+  top: 35%; /* Increased top margin */
+  left: 5%;
+  width: 30%;
+  min-width: 150px;
+  transform: rotate(15deg);
+}
+
+.collage a:nth-child(4) {
+  top: 35%; /* Increased top margin */
+  left: 60%;
+  width: 30%;
+  min-width: 150px;
+  transform: rotate(30deg);
+}
+
+.collage a:nth-child(5) {
+  top: 85%; /* Increased top margin */
+  left: 30%;
+  width: 30%;
+  min-width: 150px;
+  transform: rotate(15deg);
+}
+
+.collage .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* background: rgba(0, 0, 0, 0.7); Dark background */
+  color: rgb(229, 5, 5); /* White text */
+  font-family: "Friday13v12";
+  font-size: 24px;
+  text-align: center;
+  padding: 10px;
+  opacity: 0;
+  transition: 0.3s ease;
 }
