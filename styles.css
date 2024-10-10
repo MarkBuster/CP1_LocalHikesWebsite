@@ -1,3 +1,8 @@
+/*  Name:             Mark Buster
+      Date:             10-09-2024
+      File Description: This file is the styles file. This is where 
+                        all the styles for the entire website are implemented.
+*/
 @import url("https://fonts.googleapis.com/css2?family=Creepster&family=Metal+Mania&family=Sixtyfour+Convergence&family=Nosifer&family=Space+Grotesk:wght@300..700&display=swap");
 
 @font-face {
@@ -40,6 +45,7 @@ body {
   background-repeat: no-repeat;
 }
 
+
 h1 a:hover {
   text-shadow: 2px 2px 10px rgba(239, 231, 231, 0.8);
 }
@@ -47,7 +53,7 @@ h1 a:hover {
 h2 {
   font-family: "Friday13SH";
   font-weight: normal;
-  color: #d4d3d3; /*innactive, font has fixed color*/
+  color: #d4d3d3;
   text-align: center;
   font-size: 2.5em;
 }
@@ -87,7 +93,7 @@ footer li {
 }
 
 footer ul img {
-  width: 30px;
+  width: 30;
   height: 30px;
 }
 
@@ -125,7 +131,7 @@ footer ul img {
 
 .main-nav {
   text-align: center;
-  text-size: 1.1em;
+  font-size: 1.1em;
   font-weight: lighter;
 }
 
@@ -139,9 +145,6 @@ footer ul img {
 
 .main-header {
   background-color: rgb(0, 0, 0, 0.2);
-  background-image: url(images/headerBackground.jpg);
-  background-blend-mode: multiply;
-  background-size: cover;
   padding-bottom: 30px;
 }
 
@@ -163,7 +166,13 @@ footer ul img {
 
 .about-section {
   margin: 1em;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+}
+
+.about-section strong{
+  font-size: 1.3em;
+  font-family: "Friday13 Bonus NFI";
+  font-weight: lighter;
 }
 
 .container {
@@ -207,6 +216,7 @@ footer ul img {
   height: auto;
   border: 2px solid white;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  cursor: url(Images/cursor-Knife.cur), auto;
 }
 
 .collage a:nth-child(1) {
@@ -219,14 +229,14 @@ footer ul img {
 }
 
 .collage a:nth-child(2) {
-  left: 35%; /* Shifted left */
+  left: 35%; 
   width: 30%;
   min-width: 150px;
   transform: rotate(-15deg);
 }
 
 .collage a:nth-child(3) {
-  top: 35%; /* Increased top margin */
+  top: 35%;
   left: 5%;
   width: 30%;
   min-width: 150px;
@@ -234,7 +244,7 @@ footer ul img {
 }
 
 .collage a:nth-child(4) {
-  top: 35%; /* Increased top margin */
+  top: 35%;
   left: 60%;
   width: 30%;
   min-width: 150px;
@@ -242,7 +252,7 @@ footer ul img {
 }
 
 .collage a:nth-child(5) {
-  top: 85%; /* Increased top margin */
+  top: 85%;
   left: 30%;
   width: 30%;
   min-width: 150px;
@@ -254,17 +264,22 @@ footer ul img {
   bottom: 0;
   left: 0;
   right: 0;
-  /* background: rgba(0, 0, 0, 0.7); Dark background */
   color: rgb(229, 5, 5); /* White text */
   font-family: "Friday13v12";
   font-size: 24px;
   text-align: center;
   padding: 10px;
   opacity: 0;
-  transition: 0.3s ease;
+  transition: 2s ease;
+  cursor: url(Images/cursor-Knife.cur), auto;
 }
 
+/* Movies.html page specific */
 .movies img {
   height: 300px;
   margin: 10px;
+}
+
+.movies a{
+  cursor: url(Images/cursor-Knife.cur), auto;
 }
