@@ -7,21 +7,21 @@
 
 @font-face {
   font-family: "Friday13SH";
-  src: url("Fonts/Friday13SH.ttf") format("truetype");
+  src: url("assets/fonts/Friday13SH.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Friday13 Bonus NFI";
-  src: url("Fonts/Friday13 Bonus NFI.ttf") format("truetype");
+  src: url("assets/fonts/Friday13 Bonus NFI.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Friday13v12";
-  src: url("Fonts/Friday13v12.ttf") format("truetype");
+  src: url("assets/fonts/Friday13v12.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -32,19 +32,19 @@
   color: #949292;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background-color: black;
 }
 
 body {
-  background-image: url("Images/FoggyForest.jpg");
+  background-image: url("assets/images/FoggyForest.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
-
 
 h1 a:hover {
   text-shadow: 2px 2px 10px rgba(239, 231, 231, 0.8);
@@ -98,7 +98,7 @@ footer ul img {
 }
 
 .under-construction {
-  background-image: url("Images/evildeadchainsaws.jpg");
+  background-image: url("assets/images/evildeadchainsaws.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -169,7 +169,7 @@ footer ul img {
   font-size: 1.2rem;
 }
 
-.about-section strong{
+.about-section strong {
   font-size: 1.3em;
   font-family: "Friday13 Bonus NFI";
   font-weight: lighter;
@@ -216,7 +216,7 @@ footer ul img {
   height: auto;
   border: 2px solid white;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  cursor: url(Images/cursor-Knife.cur), auto;
+  cursor: url(assets/images/cursor-Knife.cur), auto;
 }
 
 .collage a:nth-child(1) {
@@ -229,7 +229,7 @@ footer ul img {
 }
 
 .collage a:nth-child(2) {
-  left: 35%; 
+  left: 35%;
   width: 30%;
   min-width: 150px;
   transform: rotate(-15deg);
@@ -271,7 +271,7 @@ footer ul img {
   padding: 10px;
   opacity: 0;
   transition: 2s ease;
-  cursor: url(Images/cursor-Knife.cur), auto;
+  cursor: url(assets/images/cursor-Knife.cur), auto;
 }
 
 /* Movies.html page specific */
@@ -280,6 +280,11 @@ footer ul img {
   margin: 10px;
 }
 
-.movies a{
-  cursor: url(Images/cursor-Knife.cur), auto;
+.movies a {
+  cursor: url(assets/images/cursor-Knife.cur), auto;
+}
+
+/* Community Forum*/
+.community-forum {
+  background-image: url("assets/images/StockCake-Gothic.jpg");
 }
