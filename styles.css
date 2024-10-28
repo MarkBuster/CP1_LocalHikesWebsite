@@ -37,13 +37,15 @@ body {
   margin: 0;
   padding: 0;
   background-color: black;
+  min-height: 100vh;
 }
 
 body {
-  background-image: url("assets/images/FoggyForest.jpg");
+  background-image: url("assets/images/crooked-trees.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 h1 a:hover {
@@ -99,7 +101,7 @@ footer ul img {
 
 .under-construction {
   background-image: url("assets/images/evildeadchainsaws.jpg");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -179,6 +181,7 @@ footer ul img {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 1.5em;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .about-section img {
@@ -275,13 +278,29 @@ footer ul img {
 }
 
 /* Movies.html page specific */
-.movies img {
-  height: 300px;
-  margin: 10px;
+.movies {
+  /* display: flex; */
+  /* flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  margin: 20px auto;
+  max-width: 1200px; */
 }
 
 .movies a {
   cursor: url(assets/images/cursor-Knife.cur), auto;
+}
+
+.each-movie img {
+  display: block;
+  max-width: 300px;
+  height: auto;
+}
+
+.each-movie a {
+  flex: 1 1 200px; 
+  max-width: 300px;
+  text-align: center;
 }
 
 /* Community Forum*/

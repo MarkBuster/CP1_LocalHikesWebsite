@@ -8,20 +8,17 @@
 
 "use strict";
 
-(function() {
+(function () {
+  window.addEventListener("load", init);
 
-    window.addEventListener("load", init);
-  
-    function init() {
-      qs("button").addEventListener("click", postMessage);
-      
-    }
+  function init() {
+    qs("button").addEventListener("click", postMessage);
+  }
 
   /**
-    * adds a message to chat.
-    */
+   * adds a message to chat.
+   */
   function postMessage() {
-
     //making article class
     let article = document.createElement("article");
     article.classList.add("message");
@@ -30,13 +27,13 @@
     let dateVal = id("date").value;
     let nameVal = id("name").value;
     let inputVal = id("entry").value;
-    
+
     //making new elements
     let h3 = document.createElement("h3");
     let p = document.createElement("p");
-    h3.textContent = "Name " + nameVal +"\nDate: " + dateVal ;
+    h3.textContent = "Name " + nameVal + "\nDate: " + dateVal;
     p.textContent = " " + inputVal;
-    
+
     //add the post to My posts
     article.appendChild(h3);
     article.appendChild(p);
@@ -47,20 +44,17 @@
     id("name").value = "";
     id("entry").value = "";
 
-
-    article.addEventListener("dblclick", function() {
+    article.addEventListener("dblclick", function () {
       article.remove();
     });
   }
 
-
-
-   /**
+  /**
    * Returns the element that has the ID attribute with the specified value.
    * @param {string} name - element ID.
    * @returns {object} - DOM object associated with id.
    */
- function id(id) {
+  function id(id) {
     return document.getElementById(id);
   }
 

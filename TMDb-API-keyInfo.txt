@@ -1,0 +1,19 @@
+TMDb offers a powerful API service that is free to use as long as you properly attribute us as the source of the data and/or images you use. You can find the logos for attribution here. https://www.themoviedb.org/about/logos-attribution
+
+Documentation
+Our primary documentation is located at developer.themoviedb.org.
+https://www.themoviedb.org/login?to=read_me&redirect_uri=/docs
+
+Support
+If you have questions or comments about the information covered here, please create a post on our support forums.
+https://www.themoviedb.org/talk/category/5047958519c29526b50017d6
+
+API Details
+If you'd like to edit the details of your app, click here.
+https://www.themoviedb.org/settings/api/details
+
+API Key
+88f3b4766c0ecab7f9b9ed72542551c2
+
+API Read Access Token
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4OGYzYjQ3NjZjMGVjYWI3ZjliOWVkNzI1NDI1NTFjMiIsIm5iZiI6MTczMDAwNTYyOS41Mzc1ODksInN1YiI6IjY3MWQ5N2Q4MjY4NWNiNjU2M2MxMGI1NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qj__kHr_yT6gdMgqaerI9DDFC3FCuyf1O4HDE4ETurM
