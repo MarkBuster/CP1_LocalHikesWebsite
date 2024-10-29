@@ -1,69 +1,84 @@
-/*  Name:             Mark Buster
-      Date:             10-30-2024
-      File Description: This is the javascript file and will
-                        be the control center for all interactive elements of
-                        this project. It will work seemlessly with css and html files
-                        to create a scary and professional experience.
-*/
-
 "use strict";
+const apiKey = "88f3b4766c0ecab7f9b9ed72542551c2";
 
-(function () {
-  window.addEventListener("load", init);
+window.addEventListener("load", init);
 
-  function init() {
-    qs("button").addEventListener("click", postMessage);
+async function init() {
+  try {
+    const horrorMovies = await fetchHorrorMovies();
+    await displayMovies(horrorMovies);
+  } catch (error) {
+    console.error("Error initializing:", error);
   }
+}
 
-  /**
-   * adds a message to chat.
-   */
-  function postMessage() {
-    //making article class
-    let article = document.createElement("article");
-    article.classList.add("message");
+async function fetchHorrorMovies() {
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=27&sort_by=popularity.desc`;
+  const errorMessageElement = document.getElementById("error-message");
 
-    //vars to hold each input
-    let dateVal = id("date").value;
-    let nameVal = id("name").value;
-    let inputVal = id("entry").value;
+  try {
+    const response = await fetch(url);
+    await statusCheck(response);
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching horror movies:", error);
+    errorMessageElement.textContent =
+      "I'm sorry, there was an error retrieving the movie data.";
+    return [];
+  }
+}
 
-    //making new elements
-    let h3 = document.createElement("h3");
-    let p = document.createElement("p");
-    h3.textContent = "Name " + nameVal + "\nDate: " + dateVal;
-    p.textContent = " " + inputVal;
+async function displayMovies(movies) {
+  const moviesContainer = document.getElementById("movies-jsContainer");
+  moviesContainer.innerHTML = "";
 
-    //add the post to My posts
-    article.appendChild(h3);
-    article.appendChild(p);
-    id("messages").appendChild(article);
+  movies.forEach((movie) => {
+    const movieElement = document.createElement("div");
+    movieElement.classList.add("each-movie");
 
-    //clear original input boxes
-    id("date").value = "";
-    id("name").value = "";
-    id("entry").value = "";
+    movieElement.innerHTML = `
+            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+            <h4>${movie.title}</h4>
+            <p>Release Date: ${movie.release_date}</p>
+    `;
 
-    article.addEventListener("dblclick", function () {
-      article.remove();
+    movieElement.addEventListener("click", (e) => {
+      e.preventDefault();
+      fetchTrailer(movie.id);
     });
-  }
 
-  /**
-   * Returns the element that has the ID attribute with the specified value.
-   * @param {string} name - element ID.
-   * @returns {object} - DOM object associated with id.
-   */
-  function id(id) {
-    return document.getElementById(id);
-  }
+    moviesContainer.appendChild(movieElement);
+  });
+  moviesContainer.classList.remove("disabled");
+}
 
-  /**
-   * Returns first element matching selector.
-   * @param {string} selector - CSS query selector.
-   * @returns {object} - DOM object associated selector.
-   */
-  function qs(selector) {
-    return document.querySelector(selector);
+function fetchTrailer(movieId) {
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`;
+
+  return fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      const trailer = data.results.find(
+        (video) => video.type === "Trailer" && video.site === "YouTube"
+      );
+
+      if (trailer) {
+        const trailerUrl = `https://www.youtube.com/watch?v=${trailer.key}&autoplay=1`;
+        window.open(trailerUrl, "_blank");
+      } else {
+        alert("Trailer not available");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching trailer:", error);
+      alert("Error loading trailer.");
+    });
+}
+
+async function statusCheck(response) {
+  if (!response.ok) {
+    throw new Error(await response.text());
   }
-})();
+  return response;
+}

@@ -278,29 +278,38 @@ footer ul img {
 }
 
 /* Movies.html page specific */
-.movies {
-  /* display: flex; */
-  /* flex-wrap: wrap;
+
+#movies-jsContainer {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   gap: 20px;
-  margin: 20px auto;
-  max-width: 1200px; */
+  padding: 50px 100px 50px;
 }
 
-.movies a {
+.each-movie {
   cursor: url(assets/images/cursor-Knife.cur), auto;
+  text-wrap: wrap;
+  max-width: 300px;
 }
 
 .each-movie img {
-  display: block;
   max-width: 300px;
-  height: auto;
 }
 
-.each-movie a {
-  flex: 1 1 200px; 
-  max-width: 300px;
-  text-align: center;
+#TMDB-api-citation p {
+  color: rgb(108, 105, 105);
+  text-wrap: wrap;
+  /* max-width: 500px; */
+  margin-left: 10px;
+}
+
+#TMDB-api-citation a {
+  color: red;
+  /* text-wrap: wrap; */
+  max-width: 400px;
+  margin-left: 50px;
+  margin-top: 16px;
 }
 
 /* Community Forum*/
