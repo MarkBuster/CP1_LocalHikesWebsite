@@ -10,17 +10,17 @@
  * Blank function to keep funcitons and api secure fromm outside file.
  */
 (function () {
-  const apiKey = "88f3b4766c0ecab7f9b9ed72542551c2";
+  const API_KEY = "88f3b4766c0ecab7f9b9ed72542551c2";
 
   window.addEventListener("load", init);
 
   /**
-   * Funtion that initializes the pages content.
+   * Funtion that initializes the page's content.
    */
   async function init() {
     try {
-      const horrorMovies = await fetchHorrorMovies();
-      await displayMovies(horrorMovies);
+      const HORROR_MOVIES = await fetchHorrorMovies();
+      await displayMovies(HORROR_MOVIES);
     } catch (error) {
       handleError("Error initializing movies page.");
     }
@@ -32,13 +32,13 @@
    * @returns array of movie objects.
    */
   async function fetchHorrorMovies() {
-    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=27&sort_by=popularity.desc`;
+    const URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=27&sort_by=popularity.desc`;
 
     try {
-      const response = await fetch(url);
-      await statusCheck(response);
-      const data = await response.json();
-      return data.results;
+      const RESPONSE = await fetch(URL);
+      await statusCheck(RESPONSE);
+      const DATA = await RESPONSE.json();
+      return DATA.results;
     } catch (error) {
       console.error("Error fetching horror movies:", error);
       handleError("I'm sorry, there was an error retrieving the movie data.");
@@ -50,31 +50,31 @@
    * Function that takes in an array of movie objects and displays them to
    * the user. Also setting up the movie tiles to be clikable and calls fetchTrailer
    * when clicked
-   * @param {*} movies
+   * @param {*} movies object array
    */
   async function displayMovies(movies) {
-    const moviesContainer = document.getElementById("movies-jsContainer");
-    moviesContainer.innerHTML = "";
+    const MOVIES_CONTAINER = document.getElementById("movies-jsContainer");
+    MOVIES_CONTAINER.innerHTML = "";
 
     movies.forEach((movie) => {
-      const movieElement = document.createElement("div");
-      movieElement.classList.add("each-movie");
+      const MOVIE_ELEMENT = document.createElement("div");
+      MOVIE_ELEMENT.classList.add("each-movie");
 
-      movieElement.innerHTML = `
+      MOVIE_ELEMENT.innerHTML = `
             <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
             <h4>${movie.title}</h4>
             <p>Release Date: ${movie.release_date}</p>
     `;
 
-      movieElement.addEventListener("click", (e) => {
+      MOVIE_ELEMENT.addEventListener("click", (e) => {
         e.preventDefault();
         fetchTrailer(movie.id);
       });
 
-      moviesContainer.appendChild(movieElement);
+      MOVIES_CONTAINER.appendChild(MOVIE_ELEMENT);
     });
     return Promise.resolve().then(() => {
-      moviesContainer.classList.remove("disabled");
+      MOVIES_CONTAINER.classList.remove("disabled");
     });
   }
 
@@ -89,18 +89,18 @@
     showLoadingOverlay();
 
     setTimeout(async () => {
-      const url = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`;
+      const URL = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}`;
 
       try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const trailer = data.results.find(
+        const RESPONSE = await fetch(URL);
+        const DATA = await RESPONSE.json();
+        const TRAILER = DATA.results.find(
           (video) => video.type === "Trailer" && video.site === "YouTube"
         );
 
-        if (trailer) {
-          const trailerUrl = `https://www.youtube.com/watch?v=${trailer.key}&autoplay=1`;
-          window.open(trailerUrl, "_blank");
+        if (TRAILER) {
+          const TRAILER_URL = `https://www.youtube.com/watch?v=${TRAILER.key}&autoplay=1`;
+          window.open(TRAILER_URL, "_blank");
         } else {
           handleError("Trailer is not available.");
         }
@@ -115,7 +115,7 @@
 
   /* ------------------------------------------------------------------------- */
   /* Helper Functions
-/* ------------------------------------------------------------------------- */
+  /* ------------------------------------------------------------------------- */
 
   /**
    * Helper function used to check api connection to TheMovieDatabase.
@@ -134,28 +134,28 @@
    * @param {*} message
    */
   function handleError(message) {
-    const errorMessageElement = document.getElementById("error-message");
-    errorMessageElement.textContent = message;
-    errorMessageElement.classList.remove("hidden");
+    const ERROR_MESSAGE_ELEMENT = document.getElementById("error-message");
+    ERROR_MESSAGE_ELEMENT.textContent = message;
+    ERROR_MESSAGE_ELEMENT.classList.remove("hidden");
   }
 
   /**
    * Helper funtionc used to over lay semi transparent loading effect over screen.
    */
   function showLoadingOverlay() {
-    const loadingOverlay = document.getElementById("loading-overlay");
-    const loadingVideo = loadingOverlay.querySelector("video");
+    const LOADING_OVERLAY = document.getElementById("loading-overlay");
+    const LOADING_VIDEO = LOADING_OVERLAY.querySelector("video");
 
-    loadingVideo.currentTime = 0;
-    loadingOverlay.classList.remove("hidden");
-    loadingVideo.play();
+    LOADING_VIDEO.currentTime = 0;
+    LOADING_OVERLAY.classList.remove("hidden");
+    LOADING_VIDEO.play();
   }
 
   /**
    * Helper function that removes loading effect once finished.
    */
   function hideLoadingOverlay() {
-    const loadingOverlay = document.getElementById("loading-overlay");
-    loadingOverlay.classList.add("hidden");
+    const LOADING_OVERLAY = document.getElementById("loading-overlay");
+    LOADING_OVERLAY.classList.add("hidden");
   }
 })();

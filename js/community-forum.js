@@ -8,7 +8,7 @@
 "use strict";
 
 /**
- * Blank function to keep funcitons secure fromm outside file.
+ * Blank function to keep funcitons secure from outside files.
  */
 (function () {
   window.addEventListener("load", init);
@@ -18,35 +18,30 @@
   }
 
   /**
-   * adds a message to chat.
+   * Takes input from user of name, date and message then displays the message a field below.
    */
   function postMessage() {
-    //making article class
-    let article = document.createElement("article");
-    article.classList.add("message");
+    const ARTICLE = document.createElement("article");
+    const H3 = document.createElement("h3");
+    const P = document.createElement("p");
+    const DATE_VAL = id("date").value;
+    const NAME_VAL = id("name").value;
+    const INPUT_VAL = id("entry").value;
 
-    //vars to hold each input
-    let dateVal = id("date").value;
-    let nameVal = id("name").value;
-    let inputVal = id("entry").value;
+   ARTICLE.classList.add("message");
+    H3.classList.add("nameInfo");
 
-    //making new elements
-    let h3 = document.createElement("h3");
-    let p = document.createElement("p");
-    h3.classList.add("nameInfo");
-    h3.textContent = "Name " + nameVal + "\nDate: " + dateVal;
-    p.textContent = " " + inputVal;
+    H3.textContent = "Name " + NAME_VAL + "\nDate: " + DATE_VAL;
+    P.textContent = " " + INPUT_VAL;
 
-    //add the post to My posts
-    article.appendChild(h3);
-    article.appendChild(p);
-    id("messages").appendChild(article);
+    ARTICLE.appendChild(H3);
+    ARTICLE.appendChild(P);
+    id("messages").appendChild(ARTICLE);
 
-    //clear original input boxes
+    //clear inputs
     id("date").value = "";
     id("name").value = "";
     id("entry").value = "";
-
     }
 
   /**
