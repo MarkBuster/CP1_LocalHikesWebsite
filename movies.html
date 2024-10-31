@@ -1,9 +1,8 @@
 <!--  Name:             Mark Buster
-      Date:             10-09-2024
+      Date:             10-30-2024
       File Description: This file is the movies file. This webpage will 
-                        display all the videos and will be clickable to
-                        watch on youtube or another service where the video 
-                        can be seen.
+                        display all the videos and is clickable to take the
+                        the user to view the trailer for each movie.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -24,10 +23,12 @@
     <section>
       <div class="movies">
         <h2>Top Horrorific Films</h2>
-        <div id="movies-jsContainer" class="disabled error-message">
+        <div id="movies-jsContainer" class="disabled">
+          <div id="error-message" class="error hidden"></div>
           Loading...
           <!--TMDB movie results-->
         </div>
+
       </div>
     </section>
 
@@ -57,25 +58,9 @@
         </p>
       </div>
     </footer>
+    <div id="loading-overlay" class="hidden">
+      <video src="assets/images/loading-sequence.mp4" autoplay muted></video>
+    </div>
     <script src="js/index.js"></script>
   </body>
 </html>
-
-<!-- <div class="movies">
-        <a href="https://www.youtube.com/watch?v=Ov1HWNu6hlA" target="blank"
-          ><img
-            src="assets/images/It-movie-1990.png"
-            alt="'It' 1990 movie cover"
-        /></a>
-        <a href="https://www.youtube.com/watch?v=ZMhRcmhCgi4" target="blank"
-          ><img
-            src="assets/images/TheThing-movie-1982.png"
-            alt="'The Thing' 1982 movie cover"
-        /></a>
-        <a
-          href="https://www.amazon.com/Shining-Jack-Nicholson/dp/B000GOUMPI"
-          target="blank"
-          ><img
-            src="assets/images/TheShining.jpg"
-            alt="'The Shining' 1980 movie cover"
-        /></a> -->

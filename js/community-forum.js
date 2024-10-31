@@ -5,9 +5,11 @@
                         this project. It will work seemlessly with css and html files
                         to create a scary and professional experience.
 */
-
 "use strict";
 
+/**
+ * Blank function to keep funcitons secure fromm outside file.
+ */
 (function () {
   window.addEventListener("load", init);
 
@@ -31,6 +33,7 @@
     //making new elements
     let h3 = document.createElement("h3");
     let p = document.createElement("p");
+    h3.classList.add("nameInfo");
     h3.textContent = "Name " + nameVal + "\nDate: " + dateVal;
     p.textContent = " " + inputVal;
 
@@ -44,10 +47,7 @@
     id("name").value = "";
     id("entry").value = "";
 
-    article.addEventListener("dblclick", function () {
-      article.remove();
-    });
-  }
+    }
 
   /**
    * Returns the element that has the ID attribute with the specified value.
@@ -66,4 +66,5 @@
   function qs(selector) {
     return document.querySelector(selector);
   }
+
 })();
