@@ -1,0 +1,1 @@
+This file should contain the database for your website. You are required to create a database and use SQL to access it. You cannot use file I/O! Your database must include at least 3 tables and use at least 1 foreign key. Each table must have at least 2 columns. More database requirements below.

@@ -7,21 +7,21 @@
 
 @font-face {
   font-family: "Friday13SH";
-  src: url("assets/fonts/Friday13SH.ttf") format("truetype");
+  src: url("/public/assets/fonts/Friday13SH.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Friday13 Bonus NFI";
-  src: url("assets/fonts/Friday13 Bonus NFI.ttf") format("truetype");
+  src: url("/public/assets/fonts/Friday13 Bonus NFI.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Friday13v12";
-  src: url("assets/fonts/Friday13v12.ttf") format("truetype");
+  src: url("/public/assets/fonts/Friday13v12.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -41,7 +41,7 @@ body {
 }
 
 body {
-  background-image: url("assets/images/crooked-trees.jpeg");
+  background-image: url("/public/assets/images/crooked-trees.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -100,7 +100,7 @@ footer ul img {
 }
 
 .under-construction {
-  background-image: url("assets/images/evildeadchainsaws.jpg");
+  background-image: url("/public/assets/images/evildeadchainsaws.jpg");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -222,7 +222,7 @@ footer ul img {
   height: auto;
   border: 2px solid white;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  cursor: url(assets/images/cursor-Knife.cur), auto;
+  cursor: url(/public/assets/images/cursor-Knife.cur), auto;
 }
 
 .collage a:nth-child(1) {
@@ -277,7 +277,7 @@ footer ul img {
   padding: 10px;
   opacity: 0;
   transition: 2s ease;
-  cursor: url(assets/images/cursor-Knife.cur), auto;
+  cursor: url(/public/assets/images/cursor-Knife.cur), auto;
 }
 /* ------------------------------------------------------------------------- */
 /* Movies.html page specific */
@@ -292,7 +292,7 @@ footer ul img {
 }
 
 .each-movie {
-  cursor: url(assets/images/cursor-Knife.cur), auto;
+  cursor: url(/public/assets/images/cursor-Knife.cur), auto;
   text-wrap: wrap;
   max-width: 300px;
 }
@@ -350,27 +350,27 @@ footer ul img {
 /* ------------------------------------------------------------------------- */
 
 .community-forum {
-  background-image: url("assets/images/StockCake-Gothic.jpg");
+  background-image: url("/public/assets/images/StockCake-Gothic.jpg");
 }
 
 #messages {
  font-size: 10;
  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
  color: black;
- background-color: rgba(123, 123, 98, 0.5);
+ background-color: rgba(5, 5, 5, 0.25);
  
 }
 
 #messages p {
-  color: black;
+  color: rgb(190, 169, 99);
   font-weight: bold;
   font-family: monospace;
   font-size: 14pt;
 }
 
 .nameInfo {
-  font-family: fantasy, serif;
-  color: burlywood;
+  font-family: serif;
+  color: rgb(186, 110, 10);
 }
 
 
