@@ -238,4 +238,4 @@ For full credit, your page must not only match the External Requirements listed 
   - Include a comment header in each file (`index.html`, `styles.css`, and `index.js`) with your name, the date, and a brief description of the file’s purpose.
 
 - **JSDoc**:
-  - Document all JavaScript functions using JSDoc format, including `@
+  - Document all JavaScript functions using JSDoc format, including `@params and @returns tags to describe input parameters and return values.
