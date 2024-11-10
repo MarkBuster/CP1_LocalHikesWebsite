@@ -176,6 +176,66 @@ Some public APIs require an API key to access their services. An API key is used
 
 For **full credit**, your page must not only match the External Requirements listed above, but you must also demonstrate that you understand what it means to write code following a set of programming standards.
 
-...
+---
 
+## Internal Requirements
 
+For full credit, your page must not only match the External Requirements listed above, but you must also demonstrate that you understand what it means to write code following a set of programming standards. Your code should maintain good code quality. Make sure to review the slides specific to JavaScript! We also expect you to implement relevant feedback from previous assignments. Some guidelines that are particularly important to remember for this assignment are included below.
+
+### Code Quality and Standards
+
+- **Consistent Formatting**: Ensure that your HTML, CSS, and JavaScript code adheres to consistent formatting standards. This includes:
+  - Proper use of whitespace and indentation for readability.
+  - Consistent and meaningful naming conventions for variables, functions, and classes.
+  - Proper placement of curly braces in JavaScript, as demonstrated in class examples.
+
+- **File and Link Management**:
+  - All file names, links, and extensions in your project must be lowercase and without spaces (e.g., img/puppy.jpg, not img/Puppy.JPG or img/puppy.JPG). This prevents broken links and ensures cross-platform consistency.
+  - Use relative links, not absolute, when linking to .html, .css, and .js files.
+
+### HTML/CSS
+
+- **Standards Compliance**: Follow best practices for HTML and CSS, including:
+  - Consistent use of classes and IDs.
+  - Proper separation of content (HTML), presentation (CSS), and behavior (JavaScript).
+  - Avoid redundancy in CSS, and ensure that your CSS is clean and efficient.
+  - Ensure all HTML and CSS files are well-formed and validated.
+
+### JavaScript
+
+- **Function Decomposition**: Write small, reusable functions that perform a single task. Avoid large, monolithic functions, and limit the use of anonymous functions. Use named functions for meaningful behavior.
+
+- **Variable Management**:
+  - Localize variables as much as possible. Avoid using global variables; instead, utilize module-global variables only when absolutely necessary.
+  - Use `const` with UPPER_CASED naming conventions for constants (e.g., file paths).
+  - Minimize the use of module-global variables, especially for DOM elements or objects returned by functions like `document.getElementById`.
+
+- **JavaScript and HTML Separation**:
+  - Do not embed JavaScript directly within your HTML files. Instead, link your JavaScript using `<script src="...">` in the HTML `<head>`.
+  - Avoid including HTML tags as strings in your JavaScript (e.g., `el.innerHTML = "<p>Foo</p>";`).
+
+- **Event Handling**:
+  - Implement event handlers for user interactions (e.g., mouse events, keyboard events, timers) using JavaScript functions in your .js file.
+  - Use `window.addEventListener("load", functionName)` to ensure that your scripts run after the page has fully loaded.
+
+- **Styling and the DOM**:
+  - Minimize styling directly within JavaScript (e.g., modifying the `.style` property). Instead, use the `classList` API (add, remove, toggle) to manipulate classes on DOM elements, and define those classes in your CSS.
+  - Exceptions can be made for dynamically generated styles or positions that cannot be reasonably factored out into CSS.
+
+- **Module-Global Pattern**:
+  - All JavaScript code should follow the module-global pattern and include `"use strict";` to enforce stricter parsing and error handling in your scripts.
+
+- **AJAX and Fetch API**:
+  - All asynchronous requests in your JavaScript code must use the Fetch API.
+  - Avoid unnecessary or redundant API requests. Ensure that all data retrieved from an API is used meaningfully, and be mindful of request limits imposed by some APIs.
+
+- **Additional Promise and/or Async/Await**:
+  - You must have two additional promise and/or async/await functions in your webpage, however you want to develop them, in addition to your fetches.
+
+### Documentation
+
+- **File Headers**:
+  - Include a comment header in each file (`index.html`, `styles.css`, and `index.js`) with your name, the date, and a brief description of the file’s purpose.
+
+- **JSDoc**:
+  - Document all JavaScript functions using JSDoc format, including `@
