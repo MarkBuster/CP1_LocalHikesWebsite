@@ -89,7 +89,7 @@ Grading for Creative Projects is lighter with the chance to explore and learn wi
 ---
 ---
 
-## Creative Project 2: Interactive API-Driven Webpage
+# Creative Project 2: Interactive API-Driven Webpage
 
 ### Purpose
 To practice and demonstrate proficiency in creating an interactive and dynamic webpage that integrates user-driven interactivity with data retrieved from public APIs using JavaScript.
