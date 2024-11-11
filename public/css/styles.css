@@ -353,7 +353,7 @@ footer ul img {
   background-image: url("/public/assets/images/StockCake-Gothic.jpg");
 }
 
-#messages {
+#posts {
  font-size: 10;
  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
  color: black;
@@ -361,7 +361,7 @@ footer ul img {
  
 }
 
-#messages p {
+#posts p {
   color: rgb(190, 169, 99);
   font-weight: bold;
   font-family: monospace;

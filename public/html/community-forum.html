@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HORRORIFIC | Community Forum</title>
     <meta name="description" content="This is the description" />
-    <!--TODO fix this-->
     <link rel="stylesheet" href="/public/css/styles.css" />
   </head>
   <body class="community-forum">
@@ -22,19 +21,19 @@
       </h1>
     </header>
 
-    <section class="forum-fields">
-      <label for="date">Date:</label>
-      <input id="date" type="text" />
-      <label for="name">Name:</label>
-      <input id="name" type="text" />
-      <br />
-      <label for="entry">Message Entry:</label>
-      <textarea id="entry" type="text"></textarea>
-      <button>Post Message!</button>
+    <section class="new-post-section">
+      <!-- <label for="name">Name:</label> -->
+      <input type="text" id="name" placeholder="Your Name"><br/>
+      <!-- <label for="date">Date:</label> -->
+      <!-- <input type="date" id="date"><br /> -->
+      <!-- <label for="entry">Message Entry:</label> -->
+      <textarea id="entry" placeholder="Write your post here..."></textarea>
+      <input type="file" id="image" accept=".jpg, .png"><br />
+      <button id="post-btn">Post</button>
     </section>
 
-    <section id="messages">
-      <h2><u>Posted Messages</u></h2>
+    <section id="posts">
+      <h4><u>Share with us your movie reviews, scary stories search for friends.</u></h4>
     </section>
 
     <footer>
@@ -51,6 +50,7 @@
         </ul>
       </div>
     </footer>
+    
     <script src="/public/js/community-forum.js"></script>
   </body>
 </html>
