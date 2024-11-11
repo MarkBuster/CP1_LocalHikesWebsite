@@ -86,7 +86,156 @@ If you choose to use a second stylesheet, you should use `styles.css` only for s
 ## Grading
 Grading for Creative Projects is lighter with the chance to explore and learn without the overhead of having to match strict external requirements. My goal is to give you feedback, particularly on the internal requirements and documentation.
 
-This CP will be out of 100 points.
+---
+---
 
-### Academic Integrity
-Creative Projects are unique in that students may look for outside resources for inspiration or assistance in accomplishing their goals. On occasion students may wish to use portions of sample code that has been obtained on our course website or others. In order to avoid academic misconduct for a Creative Project in AD 320 you must include school appropriate content. If I find inappropriate content or plagiarism in CPs **you will be ineligible for any points on the CP**. Ask Tim if you're unsure if your work is cited appropriately. Any external sources like images should be cited where used in the source code or (ideally) visible in a page footer.
+# Creative Project 2: Interactive API-Driven Webpage
+
+### Purpose
+To practice and demonstrate proficiency in creating an interactive and dynamic webpage that integrates user-driven interactivity with data retrieved from public APIs using JavaScript.
+
+### Skills Used
+HTML, CSS, JavaScript (including Fetch API, DOM manipulation, and event handling), API integration, and web development best practices.
+
+### Knowledge Goals
+Understanding and applying concepts of asynchronous JavaScript programming, API requests and responses, DOM manipulation, event-driven programming, and maintaining code quality and standards in web development.
+
+### [Github Repo for CP2](https://github.com/NSC-BS-CS/AD320_CP2)
+
+---
+
+## Overview
+In this project, you will create a dynamic and interactive webpage that combines the power of user-driven interactivity with data retrieved from a public API. Your task is to build a fully functional webpage that responds to user actions, fetches data asynchronously, and displays it in a meaningful way on the page. This project will help you gain experience in working with JavaScript for DOM manipulation, handling user events, and using the Fetch API to interact with external data sources.
+
+> **DO NOT USE TECHNOLOGIES BEYOND THE SCOPE OF THIS PROJECT. DO NOT USE NODE OR REACT. LEAVE YOUR API KEY IN THE PROJECT REPO FOR ME.**
+
+Learning how to find and use public APIs is an extremely important skill in modern web development. There are a ton of APIs on the web today, including ones for dog breeds, government datasets, dictionary web services, weather data, etc.
+
+The APIs supported for CP3 all return data in JSON or plaintext format since we cover that more in this class, and these formats tend to be easier to work with.
+
+---
+
+## Choosing an API
+Choose from one of the following public APIs, or contact the professor to get approval for another:
+- [Random User Generator API](https://randomuser.me)
+- [Faker API](https://fakerapi.it/en)
+- [Zippopotam API](http://www.zippopotam.us)
+- [D&D API](https://www.dnd5eapi.co)
+- [PokeAPI](https://pokeapi.co)
+- [Debt to the Penny API](https://fiscaldata.treasury.gov/datasets/debt-to-the-penny/debt-to-the-penny)
+- [CheapShark API](https://www.cheapshark.com/api)
+- [Memes API](https://api.imgflip.com/get_memes)
+- [FDA API](https://open.fda.gov/api/)
+
+---
+
+## Getting Started
+
+### 1. Design Your Webpage (HTML/CSS)
+Start by creating the structure and layout of your webpage using HTML and CSS. Design the page to include both static elements (such as headers, buttons, and forms) and placeholders where dynamic content from the API will be displayed.
+
+Consider how the user interface (UI) will look and function. Think about the elements users will interact with, such as buttons, input fields, or dropdown menus.
+
+### 2. Plan Your Interactive Elements (JavaScript)
+Identify the key interactive elements of your webpage. Plan how these elements will respond to user interactions, such as button clicks, form submissions, or other events.
+
+Create a table to map out the user events, the elements that will listen for these events, and the changes that will occur as a result. For example:
+Event 	Element Listening to Event 	Response/Elements Changed
+Click 	Button with id #fetchData 	Fetch data from API and display it in a div with id #results
+
+### 3. Choose a Public API
+Select a public API from the list provided. Review the API documentation to understand how to build the URL for fetching data. Pay attention to the base URL, required query parameters, and any optional parameters that could customize the request.
+
+Test your API request by manually constructing the URL with the required parameters and accessing it in your browser to view the JSON response.
+
+---
+
+## Implementing the Fetch API
+Write JavaScript code to make asynchronous requests to the API using the Fetch API. Your code should retrieve data from the API based on user interactions (e.g., button clicks) and then dynamically update the webpage with the received data.
+
+Ensure you handle possible errors in the fetch request, such as network issues or invalid responses, by displaying user-friendly error messages directly on the page.
+
+...
+
+**Note about API Keys**
+Some public APIs require an API key to access their services. An API key is used to manage and limit the number of requests that a service handles. You will need to obtain a free API key for the API you choose, following the instructions provided in the API’s documentation. Be sure to avoid any paid subscription plans. If you have any questions or run into issues obtaining or using your API key, don't hesitate to ask for help.
+
+---
+
+## External Requirements
+
+- **HTML/CSS:**
+    - `index.html`: The main HTML file for your webpage, structured with semantic HTML elements.
+    - `styles.css`: A CSS file to style your HTML elements, ensuring a cohesive and visually appealing design.
+    - Additional HTML file
+
+- **JavaScript:**
+    - `index.js`: A JavaScript file containing your code for handling user interactions, making API requests, and dynamically updating the DOM.
+
+...
+
+For **full credit**, your page must not only match the External Requirements listed above, but you must also demonstrate that you understand what it means to write code following a set of programming standards.
+
+---
+
+## Internal Requirements
+
+For full credit, your page must not only match the External Requirements listed above, but you must also demonstrate that you understand what it means to write code following a set of programming standards. Your code should maintain good code quality. Make sure to review the slides specific to JavaScript! We also expect you to implement relevant feedback from previous assignments. Some guidelines that are particularly important to remember for this assignment are included below.
+
+### Code Quality and Standards
+
+- **Consistent Formatting**: Ensure that your HTML, CSS, and JavaScript code adheres to consistent formatting standards. This includes:
+  - Proper use of whitespace and indentation for readability.
+  - Consistent and meaningful naming conventions for variables, functions, and classes.
+  - Proper placement of curly braces in JavaScript, as demonstrated in class examples.
+
+- **File and Link Management**:
+  - All file names, links, and extensions in your project must be lowercase and without spaces (e.g., img/puppy.jpg, not img/Puppy.JPG or img/puppy.JPG). This prevents broken links and ensures cross-platform consistency.
+  - Use relative links, not absolute, when linking to .html, .css, and .js files.
+
+### HTML/CSS
+
+- **Standards Compliance**: Follow best practices for HTML and CSS, including:
+  - Consistent use of classes and IDs.
+  - Proper separation of content (HTML), presentation (CSS), and behavior (JavaScript).
+  - Avoid redundancy in CSS, and ensure that your CSS is clean and efficient.
+  - Ensure all HTML and CSS files are well-formed and validated.
+
+### JavaScript
+
+- **Function Decomposition**: Write small, reusable functions that perform a single task. Avoid large, monolithic functions, and limit the use of anonymous functions. Use named functions for meaningful behavior.
+
+- **Variable Management**:
+  - Localize variables as much as possible. Avoid using global variables; instead, utilize module-global variables only when absolutely necessary.
+  - Use `const` with UPPER_CASED naming conventions for constants (e.g., file paths).
+  - Minimize the use of module-global variables, especially for DOM elements or objects returned by functions like `document.getElementById`.
+
+- **JavaScript and HTML Separation**:
+  - Do not embed JavaScript directly within your HTML files. Instead, link your JavaScript using `<script src="...">` in the HTML `<head>`.
+  - Avoid including HTML tags as strings in your JavaScript (e.g., `el.innerHTML = "<p>Foo</p>";`).
+
+- **Event Handling**:
+  - Implement event handlers for user interactions (e.g., mouse events, keyboard events, timers) using JavaScript functions in your .js file.
+  - Use `window.addEventListener("load", functionName)` to ensure that your scripts run after the page has fully loaded.
+
+- **Styling and the DOM**:
+  - Minimize styling directly within JavaScript (e.g., modifying the `.style` property). Instead, use the `classList` API (add, remove, toggle) to manipulate classes on DOM elements, and define those classes in your CSS.
+  - Exceptions can be made for dynamically generated styles or positions that cannot be reasonably factored out into CSS.
+
+- **Module-Global Pattern**:
+  - All JavaScript code should follow the module-global pattern and include `"use strict";` to enforce stricter parsing and error handling in your scripts.
+
+- **AJAX and Fetch API**:
+  - All asynchronous requests in your JavaScript code must use the Fetch API.
+  - Avoid unnecessary or redundant API requests. Ensure that all data retrieved from an API is used meaningfully, and be mindful of request limits imposed by some APIs.
+
+- **Additional Promise and/or Async/Await**:
+  - You must have two additional promise and/or async/await functions in your webpage, however you want to develop them, in addition to your fetches.
+
+### Documentation
+
+- **File Headers**:
+  - Include a comment header in each file (`index.html`, `styles.css`, and `index.js`) with your name, the date, and a brief description of the file’s purpose.
+
+- **JSDoc**:
+  - Document all JavaScript functions using JSDoc format, including `@params and @returns tags to describe input parameters and return values.
