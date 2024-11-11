@@ -9,6 +9,7 @@ const app = express();
 const PORT = 3000;
 const db = new sqlite3.Database('./community_forum.db');
 
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

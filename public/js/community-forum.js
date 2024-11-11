@@ -76,6 +76,7 @@
     ARTICLE.appendChild(P);
     ARTICLE.appendChild(COMMENTS_SECTION);
     id("posts").appendChild(ARTICLE);
+    
 
 
     //clear inputs
