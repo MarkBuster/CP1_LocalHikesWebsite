@@ -34,12 +34,12 @@
    * This function loads all stored posts/data in the database.
    */
   function loadPosts() {
-    fetch("/posts")
-      .then((response) => response.json())
-      .then((data) => {
-        data.forEach((post) => displayPost(post));
+    fetch('http://localhost:3000/posts')
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(post => displayPost(post));
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error loading posts:", error);
         handleError("Failed to load posts. Please try again later.");
       });

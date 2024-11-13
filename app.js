@@ -4,10 +4,17 @@ const express = require("express");
 const multer = require("multer");
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
-
+const cors = require("cors");
 const app = express();
+
+app.use(cors()); // Enable CORS for all routes
+
 const PORT = 3000;
 const db = new sqlite3.Database("./community_forum.db");
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "html", "index.html"));
+});
 
 // Middleware
 app.use(express.json());
@@ -82,6 +89,7 @@ db.serialize(() => {
 app.get("/posts", (req, res) => {
   db.all(`SELECT * FROM Posts`, [], (err, rows) => {
     if (err) {
+      console.error(err.message);
       return res.status(500).json({ error: err.message });
     }
     console.log("Posts fetched from DB:", rows); // Log the posts
