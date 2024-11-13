@@ -1,0 +1,83 @@
+-- Users Table
+INSERT INTO Users (username) VALUES
+('GhostLover99'),
+('HorrorFanatic'),
+('SpookySarah'),
+('MovieBuff13'),
+('CreepyJoe'),
+('PumpkinQueen'),
+('FearFreak'),
+('NightmareNed'),
+('ScaryMary'),
+('GoreFanatic'),
+('DarkSoul77'),
+('BloodyTears'),
+('HauntedHarry'),
+('ThrillSeeker'),
+('ZombieHunter');
+
+-- Posts Table
+INSERT INTO Posts (user_id, content, image_path) VALUES
+(1, 'Just watched Halloween for the 10th time, still gives me chills!', 'michael-myers.jpg'),
+(2, 'Any recommendations for truly terrifying ghost stories?', NULL),
+(3, 'Clowns freak me out, but Circus of Fear was so worth it!', 'circus-clown.jpg'),
+(4, 'Upstairs horror scenes are the worst. Can’t even go to bed in peace now.', 'up-stairs.jpg'),
+(5, 'Found this gem of a horror movie: Psoriasis. It’s creepy in ways you wouldn’t expect.', 'psoriasis.jpg'),
+(6, 'Anyone want to discuss Get Out? That ending was a shocker!', 'get-out.jpg'),
+(7, 'Looking for friends who love haunted houses and horror movies!', NULL),
+(8, 'The Out of Lotion short film made my skin crawl.', 'out-of-lotion.jpg'),
+(9, 'Does anyone know horror movies with good jump scares?', NULL),
+(10, 'Cutie Pie was bizarrely scary and cute. Totally unique.', 'cutie-pie.jpg'),
+(11, 'I really want to get into horror podcasts! Any good ones?', NULL),
+(12, 'Just carved a creepy pumpkin for Halloween!', 'pumpkin.jpg'),
+(13, 'The look of shock in classic horror scenes is just priceless.', 'lookOfShock.jpg'),
+(14, 'Need horror-loving friends. Let’s connect!', NULL),
+(15, 'Some horror movies are just gore with no storyline. Agree?', NULL);
+
+-- Comments Table
+INSERT INTO Comments (post_id, user_id, comment_text) VALUES
+(1, 3, 'Michael Myers is iconic! Can’t believe how creepy that movie is.'),
+(2, 4, 'Try The Conjuring series if you want ghost stories.'),
+(3, 5, 'Clowns in horror movies are the stuff of nightmares.'),
+(4, 6, 'I can relate! I always feel like something’s lurking upstairs.'),
+(5, 7, 'Psoriasis sounds creepy. I’ll check it out!'),
+(6, 8, 'That ending blew my mind too! Never saw it coming.'),
+(7, 9, 'Same here! Let’s talk all things horror!'),
+(8, 10, 'I saw it too. Had goosebumps the whole time.'),
+(9, 11, 'Try Insidious, the jump scares are insane.'),
+(10, 12, 'Cutie Pie was so strange but weirdly addicting!'),
+(11, 13, 'Horror podcasts are awesome! Check out Lore.'),
+(12, 14, 'That’s a cool idea for Halloween!'),
+(13, 15, 'Classic horror has the best shocked faces.'),
+(1, 2, 'Can’t believe people actually watch that alone!'),
+(10, 1, 'It’s oddly terrifying, right? Glad I’m not the only one.'),
+(15, 8, 'Totally agree, some just go overboard on gore.');
+
+-- Images Table
+INSERT INTO Images (user_id, post_id, image_path, image_text) VALUES
+(1, 1, 'michael-myers.jpg', 'Halloween classic moment with Michael Myers'),
+(3, 3, 'circus-clown.jpg', 'Terrifying clown image from Circus of Fear'),
+(4, 4, 'up-stairs.jpg', 'Stairs scene that will make you think twice'),
+(5, 5, 'psoriasis.jpg', 'Horrifying skin effect from Psoriasis'),
+(6, 6, 'get-out.jpg', 'Intense scene from Get Out'),
+(8, 8, 'out-of-lotion.jpg', 'Creepy image from the short film Out of Lotion'),
+(10, 10, 'cutie-pie.jpg', 'Surprisingly eerie but cute character'),
+(12, 12, 'pumpkin.jpg', 'Halloween pumpkin carved to perfection'),
+(13, 13, 'lookOfShock.jpg', 'The perfect look of horror and shock'),
+(14, 4, 'up-stairs.jpg', 'A second look at that spooky staircase.');
+
+-- Additional data for Posts Table (without images)
+INSERT INTO Posts (user_id, content) VALUES
+(3, 'Best horror movie streaming platforms? Need suggestions!'),
+(5, 'Anyone else up for horror movie trivia nights?'),
+(7, 'Rewatching old horror movies makes me realize how cheesy some are.'),
+(10, 'Love listening to horror podcasts while driving.'),
+(12, 'Creepiest horror scene you’ve ever seen? Let’s discuss!');
+
+-- Additional data for Comments Table
+INSERT INTO Comments (post_id, user_id, comment_text) VALUES
+(16, 1, 'Shudder has a great selection if you’re into horror!'),
+(17, 2, 'Trivia nights would be awesome! Count me in.'),
+(18, 3, 'Definitely! Old horror movies are so fun and cheesy.'),
+(19, 4, 'Lore and NoSleep are two great horror podcasts.'),
+(20, 5, 'The clown in IT still haunts my dreams. What about you?');

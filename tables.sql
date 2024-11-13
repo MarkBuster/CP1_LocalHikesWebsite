@@ -1,6 +1,6 @@
 -- This file should include any CREATE statements you used in your database. This file does not need to include header documentation (this is the only exception - all other files must include documentation).
 
--- Users Table (optional: only needed if user data is separate)
+-- Users Table
 CREATE TABLE IF NOT EXISTS Users (
   user_id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT NOT NULL UNIQUE
@@ -33,9 +33,9 @@ CREATE TABLE IF NOT EXISTS Images (
   image_id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER NOT NULL,
   post_id INTEGER NOT NULL,
-  comment_id INTEGER,  -- Optional: can be NULL if image is associated only with a post
-  image_path TEXT NOT NULL,  -- Path to image file
-  image_text TEXT,  -- Optional descriptive text for the image
+  comment_id INTEGER,
+  image_path TEXT NOT NULL,
+  image_text TEXT,
   date_uploaded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES Users(user_id),
   FOREIGN KEY (post_id) REFERENCES Posts(post_id),

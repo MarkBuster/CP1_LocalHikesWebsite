@@ -1,32 +1,33 @@
 //This file should contain the Node.js service that is your back end API.
 
-const express = require('express');
-const multer = require('multer');
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const express = require("express");
+const multer = require("multer");
+const sqlite3 = require("sqlite3").verbose();
+const path = require("path");
 
 const app = express();
 const PORT = 3000;
-const db = new sqlite3.Database('./community_forum.db');
-
+const db = new sqlite3.Database("./community_forum.db");
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));  // Serve static files (e.g., images)
+app.use(express.static("public")); // Serve static files (e.g., images)
 
 // Configure Multer for image upload handling
 const storage = multer.diskStorage({
-  destination: './public/uploads',
+  destination: "./public/uploads",
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
-  }
+  },
 });
-const upload = multer({ 
-  storage, 
+const upload = multer({
+  storage,
   fileFilter: (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png/;
-    const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
+    const extName = fileTypes.test(
+      path.extname(file.originalname).toLowerCase()
+    );
     const mimeType = fileTypes.test(file.mimetype);
 
     if (extName && mimeType) {
@@ -34,7 +35,7 @@ const upload = multer({
     } else {
       cb("Error: Images only!");
     }
-  }
+  },
 });
 
 // Initialize tables if they don't exist
@@ -78,49 +79,98 @@ db.serialize(() => {
 });
 
 // Routes
-app.get('/posts', (req, res) => {
+app.get("/posts", (req, res) => {
   db.all(`SELECT * FROM Posts`, [], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
+    console.log("Posts fetched from DB:", rows); // Log the posts
     res.json(rows);
   });
 });
 
-app.post('/posts', upload.single('image'), (req, res) => {
-  const { user_id, content } = req.body;
+app.post("/posts", upload.single("image"), (req, res) => {
+  const { username, content } = req.body;
   const image_path = req.file ? `/uploads/${req.file.filename}` : null;
 
-  db.run(`INSERT INTO Posts (user_id, content, image_path) VALUES (?, ?, ?)`,
-    [user_id, content, image_path],
-    function (err) {
+  // Checking if the username already exists
+  db.get(
+    `SELECT user_id FROM Users WHERE username = ?`,
+    [username],
+    (err, row) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
-      res.json({ post_id: this.lastID });
+
+      if (row) {
+        // User exists, reuse existing user_id
+        createPost(row.user_id);
+      } else {
+        // User doesn't exist, create new entry and assign user_id
+        db.run(
+          `INSERT INTO Users (username) VALUES (?)`,
+          [username],
+          function (err) {
+            if (err) {
+              return res.status(500).json({ error: err.message });
+            }
+            createPost(this.lastID); // Use the newly created user_id
+          }
+        );
+      }
+    }
+  );
+
+  function createPost(userId) {
+    db.run(
+      `INSERT INTO Posts (user_id, content, image_path) VALUES (?, ?, ?)`,
+      [userId, content, image_path],
+      function (err) {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+        res.json({ post_id: this.lastID });
+      }
+    );
+  }
+});
+
+app.post("/comments", (req, res) => {
+  const { username, post_id, comment_text } = req.body;
+
+  db.get(
+    `SELECT user_id FROM Users WHERE username = ?`,
+    [username],
+    (err, row) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+
+      if (row) {
+        // Use the user_id from the existing user
+        db.run(
+          `INSERT INTO Comments (post_id, user_id, comment_text) VALUES (?, ?, ?)`,
+          [post_id, row.user_id, comment_text],
+          function (err) {
+            if (err) {
+              return res.status(500).json({ error: err.message });
+            }
+            res.json({ comment_id: this.lastID });
+          }
+        );
+      } else {
+        return res.status(404).json({ error: "User not found" });
+      }
     }
   );
 });
 
-app.post('/comments', (req, res) => {
-  const { post_id, user_id, comment_text } = req.body;
-
-  db.run(`INSERT INTO Comments (post_id, user_id, comment_text) VALUES (?, ?, ?)`,
-    [post_id, user_id, comment_text],
-    function (err) {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      res.json({ comment_id: this.lastID });
-    }
-  );
-});
-
-app.post('/upload-image', upload.single('image'), (req, res) => {
+app.post("/upload-image", upload.single("image"), (req, res) => {
   const { user_id, post_id, comment_id, image_text } = req.body;
   const image_path = `/uploads/${req.file.filename}`;
 
-  db.run(`INSERT INTO Images (user_id, post_id, comment_id, image_path, image_text) VALUES (?, ?, ?, ?, ?)`,
+  db.run(
+    `INSERT INTO Images (user_id, post_id, comment_id, image_path, image_text) VALUES (?, ?, ?, ?, ?)`,
     [user_id, post_id, comment_id || null, image_path, image_text],
     function (err) {
       if (err) {

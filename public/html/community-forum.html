@@ -21,20 +21,24 @@
       </h1>
     </header>
 
-    
     <section class="new-post-section">
       <!-- <label for="name">Name:</label> -->
-      <input type="text" id="name" placeholder="Your Name"><br/>
+      <input type="text" id="name" placeholder="Your Name" /><br />
       <!-- <label for="date">Date:</label> -->
       <!-- <input type="date" id="date"><br /> -->
       <!-- <label for="entry">Message Entry:</label> -->
       <textarea id="entry" placeholder="Write your post here..."></textarea>
-      <input type="file" id="image" accept=".jpg, .png"><br />
+      <input type="file" id="image" accept=".jpg, .png" /><br />
       <button id="post-btn">Post</button>
     </section>
 
     <section id="posts">
-      <h4><u>Share with us your movie reviews, scary stories search for friends.</u></h4>
+      <h4>
+        <u
+          >Share with us your movie reviews, scary stories or create
+          friendships.</u>
+      </h4>
+      <div id="error-message" class="hidden"></div>
     </section>
 
     <footer>
@@ -51,7 +55,7 @@
         </ul>
       </div>
     </footer>
-    
+
     <script src="/public/js/community-forum.js"></script>
   </body>
 </html>

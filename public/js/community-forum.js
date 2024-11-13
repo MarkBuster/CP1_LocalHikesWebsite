@@ -15,6 +15,7 @@
 
   function init() {
     qs("button#post-btn").addEventListener("click", postMessage);
+    loadPosts();
   }
 
   /**
@@ -23,10 +24,25 @@
    */
   function getCurrentDate() {
     const now = new Date();
-    const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = String(now.getMonth() + 1).padStart(2, "0");
     const year = now.getFullYear();
     return `${month}-${day}-${year}`;
+  }
+
+  /**
+   * This function loads all stored posts/data in the database.
+   */
+  function loadPosts() {
+    fetch("/posts")
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((post) => displayPost(post));
+      })
+      .catch((error) => {
+        console.error("Error loading posts:", error);
+        handleError("Failed to load posts. Please try again later.");
+      });
   }
 
   /**
@@ -44,28 +60,77 @@
     const DATE_VAL = getCurrentDate();
     const NAME_VAL = id("name").value;
     const INPUT_VAL = id("entry").value;
+    const IMAGE_PATH = id("image").files[0];
 
-   // Set up post
-   ARTICLE.classList.add("post");
-   HEADER.classList.add("post-header");
-   H3.classList.add("nameInfo");
-   COMMENTS_SECTION.classList.add("comments-section", "hidden");
-   COMMENT_INPUT.classList.add("comment-input");
-   COMMENT_BTN.classList.add("comment-btn");
+    // Prepare FormData to send the data to the server
+    const formData = new FormData();
+    formData.append("name", NAME_VAL);
+    formData.append("date", DATE_VAL);
+    formData.append("message", INPUT_VAL);
+    if (IMAGE_PATH) {
+      formData.append("image", IMAGE_PATH);
+    }
 
-    H3.innerHTML = "Name " + NAME_VAL + "<br>Date: " + DATE_VAL;
-    P.textContent = " " + INPUT_VAL;
+    // Send the form data to the server
+    fetch("/post", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Post saved:", data);
+        displayPost(data);
+      })
+      .catch((error) => {
+        console.error("Error posting message:", error);
+        handleError("Failed to post your message. Please try again.");
+      });
+
+    //clear inputs
+    id("name").value = "";
+    id("entry").value = "";
+    id("image").value = "";
+  }
+
+  /**
+   * Display the newly created post (either after sending or immediately)
+   */
+  function displayPost(postData) {
+    const ARTICLE = document.createElement("article");
+    const HEADER = document.createElement("header");
+    const H3 = document.createElement("h3");
+    const P = document.createElement("p");
+    const IMAGE = document.createElement("img");
+    const COMMENTS_SECTION = document.createElement("div");
+    const COMMENT_INPUT = document.createElement("input");
+    const COMMENT_BTN = document.createElement("button");
+
+    H3.innerHTML = `Name: ${postData.name} <br> Date: ${postData.date}`;
+    P.textContent = postData.message;
+
+    // Display image if there is one
+    if (postData.imagePath) {
+      IMAGE.src = postData.imagePath;
+      IMAGE.alt = "Post Image";
+      ARTICLE.appendChild(IMAGE);
+    }
 
     // Set up comments section
     COMMENT_INPUT.placeholder = "Add a comment...";
     COMMENT_BTN.textContent = "Submit Comment";
-    COMMENT_BTN.addEventListener("click", () => addComment(COMMENTS_SECTION, COMMENT_INPUT.value));
+    COMMENT_BTN.addEventListener("click", () =>
+      addComment(COMMENTS_SECTION, COMMENT_INPUT.value)
+    );
 
     const SHOW_COMMENTS_BTN = document.createElement("button");
     SHOW_COMMENTS_BTN.textContent = "Show Comments";
     SHOW_COMMENTS_BTN.addEventListener("click", () => {
       COMMENTS_SECTION.classList.toggle("hidden");
-      SHOW_COMMENTS_BTN.textContent = COMMENTS_SECTION.classList.contains("hidden") ? "Show Comments" : "Hide Comments";
+      SHOW_COMMENTS_BTN.textContent = COMMENTS_SECTION.classList.contains(
+        "hidden"
+      )
+        ? "Show Comments"
+        : "Hide Comments";
     });
 
     HEADER.appendChild(H3);
@@ -76,15 +141,9 @@
     ARTICLE.appendChild(P);
     ARTICLE.appendChild(COMMENTS_SECTION);
     id("posts").appendChild(ARTICLE);
-    
+  }
 
-
-    //clear inputs
-    id("name").value = "";
-    id("entry").value = "";
-    }
-
-    /**
+  /**
    * Adds a comment to the specified comment section.
    * @param {HTMLElement} commentsSection - The comments container element.
    * @param {string} commentText - The text of the comment to add.
@@ -104,6 +163,16 @@
   }
 
   /**
+   * Helper function to print a custom error message to the user.
+   * @param {*} message
+   */
+  function handleError(message) {
+    const ERROR_MESSAGE_ELEMENT = document.getElementById("error-message");
+    ERROR_MESSAGE_ELEMENT.textContent = message;
+    ERROR_MESSAGE_ELEMENT.classList.remove("hidden");
+  }
+
+  /**
    * Returns the element that has the ID attribute with the specified value.
    * @param {string} name - element ID.
    * @returns {object} - DOM object associated with id.
@@ -120,5 +189,4 @@
   function qs(selector) {
     return document.querySelector(selector);
   }
-
 })();
