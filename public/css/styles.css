@@ -367,6 +367,13 @@ footer ul img {
   background-color: rgba(5, 5, 5, 0.25);
 }
 
+#posts h4 {
+  font-family: "Friday13 Bonus NFI";
+  font-weight: lighter;
+  font-size: 1.5em;
+  color:rgb(56, 166, 130);
+}
+
 #posts p {
   color: rgb(190, 169, 99);
   font-weight: bold;
@@ -408,7 +415,7 @@ footer ul img {
 }
 
 .comment-input {
-  width: 100%;
+  width: 50%;
   padding: 8px;
   margin: 10px 0;
 }
