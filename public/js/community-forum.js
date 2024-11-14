@@ -81,7 +81,7 @@
       .then((data) => {
         console.log("Post saved:", data);
         loadPosts();
-        
+
         id("name").value = "";
         id("entry").value = "";
         id("image").value = "";

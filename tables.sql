@@ -1,4 +1,10 @@
--- This file should include any CREATE statements you used in your database. This file does not need to include header documentation (this is the only exception - all other files must include documentation).
+/*  Name:             Mark Buster
+    Date:             11-13-2024
+    File Description: This file includes CREATE statements used in the creation of
+                      Horrorific's database. The app.js file should create the tables
+                      in a circumstance where one is dropped or missing. These are extra
+                      insurance.           
+*/
 
 -- Users Table
 CREATE TABLE IF NOT EXISTS Users (

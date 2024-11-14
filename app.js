@@ -25,7 +25,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-
 /**
  * Configures and initializes Multer storage for file uploads.
  * @type {Object}
@@ -185,7 +184,7 @@ app.post("/posts", upload.single("image"), (req, res) => {
             if (err) {
               return res.status(500).json({ error: err.message });
             }
-            
+
             res.json({
               post_id: this.lastID,
               username,
@@ -284,11 +283,11 @@ app.post("/upload-image", upload.single("image"), (req, res) => {
 });
 
 /**
-* Starts the Express server and listens for incoming requests.
-* @param {number} PORT - The port number to listen on (3000)
-* @param {Function} callback - Function called when server starts successfully
-* @listens {http://localhost:3000}
-*/
+ * Starts the Express server and listens for incoming requests.
+ * @param {number} PORT - The port number to listen on (3000)
+ * @param {Function} callback - Function called when server starts successfully
+ * @listens {http://localhost:3000}
+ */
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
