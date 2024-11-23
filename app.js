@@ -1,5 +1,6 @@
 /*    Name:             Mark Buster
       Date:             11-13-2024
+      File:             app.js
       File Description: This is a file containing Express.js setup and endpoints 
                         that connect a local database. It is a backend API service 
                         for Horrorific's community forum page. 
@@ -22,7 +23,7 @@ const db = new sqlite3.Database("./community-forum.db", (err) => {
     console.log('Connected to database');
   }
 });
-db.configure('busyTimeout', 3000);
+db.configure('busyTimeout', 3000);//in case of DB locks
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

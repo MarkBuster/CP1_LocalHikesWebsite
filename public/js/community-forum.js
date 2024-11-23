@@ -34,14 +34,12 @@
         return response.json();
       })
       .then((data) => {
-        //console.log("Received posts data:", data);
         id("posts").innerHTML =
           '<h4><u>Share with us your movie reviews, scary stories or create friendships.</u></h4><div id="error-message" class="hidden"></div>';
 
         // Check if data.posts exists
         if (data.posts && Array.isArray(data.posts)) {
           data.posts.forEach((post) => {displayPost(post);
-          // console.log("Processing post:", post); // Log each post
         });
         } else {
           console.error("Unexpected data format:", data);
@@ -108,7 +106,7 @@
    * @param {Array<Object>} postData.comments - Array of comment objects
    */
   function displayPost(postData) {
-    console.log("Displaying post data:", postData); // Debugging
+    // console.log("Displaying post data:", postData); // debugging
 
     const ARTICLE = document.createElement("article");
     const HEADER = document.createElement("header");
