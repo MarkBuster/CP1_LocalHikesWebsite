@@ -1,5 +1,6 @@
 /*    Name:             Mark Buster
       Date:             11-13-2024
+      File:             community-forum.js
       File Description: This is the javascript file and will
                         be the control center for all interactive elements of
                         this community forum page. It will control the client
@@ -33,12 +34,15 @@
         return response.json();
       })
       .then((data) => {
+        //console.log("Received posts data:", data);
         id("posts").innerHTML =
           '<h4><u>Share with us your movie reviews, scary stories or create friendships.</u></h4><div id="error-message" class="hidden"></div>';
 
         // Check if data.posts exists
         if (data.posts && Array.isArray(data.posts)) {
-          data.posts.forEach((post) => displayPost(post));
+          data.posts.forEach((post) => {displayPost(post);
+          // console.log("Processing post:", post); // Log each post
+        });
         } else {
           console.error("Unexpected data format:", data);
           handleError("Received unexpected data format from server");

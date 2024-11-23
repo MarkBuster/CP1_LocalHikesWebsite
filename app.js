@@ -15,15 +15,22 @@ const app = express();
 app.use(cors());
 
 const PORT = 3000;
-const db = new sqlite3.Database("./community-forum.db");
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "html", "index.html"));
+const db = new sqlite3.Database("./community-forum.db", (err) => {
+  if (err) {
+    console.error('Database connection error:', err);
+  } else {
+    console.log('Connected to database');
+  }
 });
+db.configure('busyTimeout', 3000);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "html", "index.html"));
+});
 
 /**
  * Configures and initializes Multer storage for file uploads.
@@ -142,7 +149,8 @@ app.get("/posts", (req, res) => {
         comments: JSON.parse(row.comments).filter(
           (comment) => comment !== null
         ),
-        image_path: row.image_path ? `/public/uploads/${row.image_path}` : null,
+        image_path: row.image_path ? `/uploads/${row.image_path.replace('/public/uploads/', '').replace('/uploads/', '')}` 
+    : null,
       }));
 
       console.log("Sending posts:", processedRows);
@@ -165,55 +173,67 @@ app.get("/posts", (req, res) => {
  * @returns {Object} JSON object containing the created post data
  */
 app.post("/posts", upload.single("image"), (req, res) => {
+  console.log("Received post request:", req.body); // Log the request body
+  console.log("File:", req.file); // Log the file if one was uploaded
+
   const { username, content } = req.body;
   const image_path = req.file ? req.file.filename : null;
 
-  db.get(
-    `SELECT user_id FROM Users WHERE username = ?`,
-    [username],
-    (err, row) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
+  if (!username || !content) {
+    console.error("Missing required fields");
+    return res.status(400).json({ error: "Username and content are required" });
+  }
 
-      const createPost = (userId) => {
-        db.run(
-          `INSERT INTO Posts (user_id, content, image_path) VALUES (?, ?, ?)`,
-          [userId, content, image_path],
-          function (err) {
-            if (err) {
-              return res.status(500).json({ error: err.message });
+  db.serialize(() => {
+    db.get(
+      `SELECT user_id FROM Users WHERE username = ?`,
+      [username],
+      (err, row) => {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+
+        const createPost = (userId) => {
+          db.run(
+            `INSERT INTO Posts (user_id, content, image_path) VALUES (?, ?, ?)`,
+            [userId, content, image_path],
+            function (err) {
+              if (err) {
+                console.error("Error creating post:", err);
+                return res.status(500).json({ error: err.message });
+              }
+
+              res.json({
+                post_id: this.lastID,
+                username,
+                content,
+                image_path,
+                post_date: new Date().toISOString(),
+                comment_count: 0,
+                comments: [],
+              });
             }
+          );
+        };
 
-            res.json({
-              post_id: this.lastID,
-              username,
-              content,
-              image_path,
-              post_date: new Date().toISOString(),
-              comment_count: 0,
-              comments: [],
-            });
-          }
-        );
-      };
-
-      if (row) {
-        createPost(row.user_id);
-      } else {
-        db.run(
-          `INSERT INTO Users (username) VALUES (?)`,
-          [username],
-          function (err) {
-            if (err) {
-              return res.status(500).json({ error: err.message });
+        if (row) {
+          createPost(row.user_id);
+        } else {
+          db.run(
+            `INSERT INTO Users (username) VALUES (?)`,
+            [username],
+            function (err) {
+              if (err) {
+                console.error("Error creating user:", err);
+                return res.status(500).json({ error: err.message });
+              }
+              createPost(this.lastID);
             }
-            createPost(this.lastID);
-          }
-        );
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 /**
@@ -268,7 +288,7 @@ app.post("/comments", (req, res) => {
  */
 app.post("/upload-image", upload.single("image"), (req, res) => {
   const { user_id, post_id, comment_id, image_text } = req.body;
-  const image_path = `/uploads/${req.file.filename}`;
+  const image_path = req.file.filename;
 
   db.run(
     `INSERT INTO Images (user_id, post_id, comment_id, image_path, image_text) VALUES (?, ?, ?, ?, ?)`,
