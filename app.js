@@ -25,10 +25,10 @@ const db = new sqlite3.Database("./community-forum.db", (err) => {
 });
 db.configure('busyTimeout', 3000);//in case of DB locks
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "html", "index.html"));
 });
@@ -174,11 +174,11 @@ app.get("/posts", (req, res) => {
  * @returns {Object} JSON object containing the created post data
  */
 app.post("/posts", upload.single("image"), (req, res) => {
-  console.log("Received post request:", req.body); // Log the request body
-  console.log("File:", req.file); // Log the file if one was uploaded
 
   const { username, content } = req.body;
   const image_path = req.file ? req.file.filename : null;
+  console.log("Received post request:", req.body); // Log request body
+  console.log("File:", req.file); // Log file if uploaded
 
   if (!username || !content) {
     console.error("Missing required fields");
@@ -304,11 +304,16 @@ app.post("/upload-image", upload.single("image"), (req, res) => {
 });
 
 /**
- * Starts the Express server and listens for incoming requests.
+ * Starts the Express server and listens for incoming requests, but exports in case 
+ * of running tests.
  * @param {number} PORT - The port number to listen on (3000)
  * @param {Function} callback - Function called when server starts successfully
  * @listens {http://localhost:3000}
+ * @exports {Express.Application} app - Express application for testing
  */
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+}
+module.exports = app;
