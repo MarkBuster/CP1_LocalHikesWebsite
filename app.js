@@ -1,5 +1,5 @@
 /*    Name:             Mark Buster
-      Date:             11-13-2024
+      Date:             11-24-2024
       File:             app.js
       File Description: This is a file containing Express.js setup and endpoints 
                         that connect a local database. It is a backend API service 
@@ -23,7 +23,7 @@ const db = new sqlite3.Database("./community-forum.db", (err) => {
     console.log('Connected to database');
   }
 });
-db.configure('busyTimeout', 3000);//in case of DB locks
+db.configure('busyTimeout', 3000);//in case of DB lockout
 
 
 app.use(express.json());
@@ -177,8 +177,8 @@ app.post("/posts", upload.single("image"), (req, res) => {
 
   const { username, content } = req.body;
   const image_path = req.file ? req.file.filename : null;
-  console.log("Received post request:", req.body); // Log request body
-  console.log("File:", req.file); // Log file if uploaded
+  console.log("Received post request:", req.body);
+  console.log("File:", req.file);
 
   if (!username || !content) {
     console.error("Missing required fields");
@@ -258,7 +258,7 @@ app.post("/comments", (req, res) => {
       }
 
       if (row) {
-        // Reuse user-id if same username is detected
+        // Reuses user-id if same username is detected
         db.run(
           `INSERT INTO Comments (post_id, user_id, comment_text) VALUES (?, ?, ?)`,
           [post_id, row.user_id, comment_text],

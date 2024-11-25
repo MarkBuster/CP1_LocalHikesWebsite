@@ -1,5 +1,5 @@
 /*    Name:             Mark Buster
-      Date:             11-13-2024
+      Date:             11-24-2024
       File:             community-forum.js
       File Description: This is the javascript file and will
                         be the control center for all interactive elements of
