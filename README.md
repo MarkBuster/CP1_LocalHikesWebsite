@@ -87,10 +87,11 @@ If you choose to use a second stylesheet, you should use `styles.css` only for s
 Grading for Creative Projects is lighter with the chance to explore and learn without the overhead of having to match strict external requirements. My goal is to give you feedback, particularly on the internal requirements and documentation.
 
 ---
-
-
-
-
+---
+---
+---
+---
+---
 ---
 
 # Creative Project 2: Interactive API-Driven Webpage
